@@ -88,7 +88,7 @@ on kms.Order_ID = Ord. Order_ID
 
 
 -----QUESTION 1: WHICH PRODUCT CATEGORY HAD THE HIGHEST SALES-------
----ANS: TECHNOLOGY UNDER PRODUCT CATEGORY HAD THE HIGHEST SALES
+* Under the product category Technology had the highest sales
 ``` SQL
 select top 1 product_category, sum(sales) as highest_sales 
 from kms_inventory
@@ -97,10 +97,9 @@ group by product_category
 order by highest_sales desc
 ```
 
-
 -------QUESTION 2: WHAT ARE THE TOP 3 AND BOTTOM 3 REGION IN TERMS OF SALES
- ---ANS: THE TOP 3 REGIONS ARE WEST, ONTARIO, AND PRARIE
- ---ANS: THE BOTTOM 3 REGIONS ARE NUNAVUT, NORTHWEST TERRITORIES, AND YUKON
+* West, Ontario, and Prarie are the 3 top regions performing well in sales
+* Nunavut, Northwest territories, and Yukon are the 3 least performing regiond in sales
 ``` SQL
 select top 3 Region, sum(Sales) as total_Sales 
 	from kms_inventory
@@ -117,7 +116,7 @@ select top 3 Region, sum(Sales) as Sales
 
 
 ---------QUESTION 3:WHAT WERE THE TOTAL SALES OF APPLIANCES IN ONTARIO
----ANS: THE TOTAL SALES OF ONTARIO IS 202346.839630127
+* The total sales of appliances in ontario is 202346.839630127
 
 ````SQL
 select Region, Product_Sub_Category, sum(Sales) as Total_Sales
@@ -128,21 +127,20 @@ select Region, Product_Sub_Category, sum(Sales) as Total_Sales
 
 
 -------QUESTION 4: ADVICE THE MANAGEMENT OF KMS ON WHAT TO DO TO INCREASE REVENUE FROM THE BOTTOM 10 CUSTOMERS
----ANS: MANAGEMENT OF KMS SHOULD INVEST MORE IN CUSTOMERS WHOSE REVENUE STILL SUMS UP TO A 100 AND ABOVE 
+* The Management of KMS  
 
 ````SQL
 select top 10 Customer_Name, Customer_segment, sum(Sales) as Revenue 
 	from kms_inventory
 	group by Customer_Name, Customer_Segment
-	order by Revenue desc
+	order by Revenue asc
 ````
 
 ------QUESTION 5: KMS INCURRED THE MOST SHIPPING COST USING WHICH SHIPPING METHOD
----ANS: KMS INCURRED THE MOST SHIPPING COST USING THE DELIVERY TRUCK SHIPPING METHOD
-
-----This Analysis reveals the need for KMS to detemine whether this shipping mode is being used efficiently
----If the cost of this shipping mode equals the order priority
----Check whether there are chances of optimizing logistics and reducing cost
+* KMS incurred the most shipping mode using Delivery truck method 
+* This Analysis reveals the need for KMS to detemine whether this shipping mode is being used efficiently
+* If the cost of this shipping mode equals the order priority
+* Check whether there are chances of optimizing logistics and reducing cost
 
 ````SQL
 select top 1 Ship_Mode, sum(Shipping_Cost) as Shipping_Cost
@@ -163,7 +161,7 @@ select top 10 Customer_Name, Customer_Segment, Product_Category, Product_Sub_Cat
 
 
 -------QUESTION 7: WHICH SMALL BUSINESS CUSTOMER HAD THE HIGHEST SALES
--------ANS: THE SMALL BUSINESS OWNER WITH HE HIGHEST SALES IS DENNIS KANE
+* The small business owner with the highest sales is Dennis Kane
 
 ````SQL
 select top 1 Customer_Name, Customer_Segment, sum(sales) as Total_sales 
@@ -186,7 +184,7 @@ order by Total_Orders desc
 
 
 -------QUESTION 9: WHICH CONSUMER CUSTOMER WAS THE MOST PROFITABLE ONE
----ANS: THE CONSUMER CUSTOMER WITH THE MOST HIGHEST PROFIT IS EMILY PHAN 
+* Consumer customer with the most profit is Emily Phan
 
 ````SQL
 select top 1* from (
