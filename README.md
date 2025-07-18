@@ -1,9 +1,8 @@
 # DSA-SECOND-CAPSTONE-PROJECT
-Second project i worked on given by DSA-INCUBATOR HUB
 
 ## PROJECT TOPIC: Kultra Mega STORES INVENTORY ANALYSIS
 ### PROJECT OVERVIEW
-This query and analysis project aims to write queries that can support Abuja division of Kultra Mega Stores and provide valueable insights that can be used to make decisions
+This query and analysis project aims to develop SQL-based analytics that can support Abuja division of Kultra Mega Stores and provide valueable insights and findings which can be used to make decisions
 
 #### Data Source 
 The primary source of this data is unknown but the secondary source of the data is DSA CAPSTONE PROJECT hence it cannot be downloaded online 
@@ -19,7 +18,7 @@ The following action was performed
 * altered the datatype of some columns
 * Joined the the two data csv files
 
-### Exploratory Data Analysis
+#### Exploratory Data Analysis
 This process involves the exploring of data to answer some questions such as:
 
 * Which product category had the highest sales?
@@ -36,7 +35,7 @@ This process involves the exploring of data to answer some questions such as:
 Express Air is the fastest but the most expensive one, do you think the company
 appropriately spent shipping costs based on the Order Priority? Explain your answer
 
-### Result Findings
+#### Result Findings
 * Technology is the Best Selling Category
 * West, Ontario and prarie are the top regions in sales
 * Nunavut, Northwest, and Yukan are the regions with the least sales respectively
@@ -44,7 +43,7 @@ appropriately spent shipping costs based on the Order Priority? Explain your ans
 * Dennis Kane is the higest small business owner
 * Delivery Truck is the shipping mode witrh the most shipping cost
 
-### Recommendation
+#### Recommendation
 * KMS should improve services in the top 3 regions
 * Marketing strategy should be applied more in regions with the least sales
 * The shipping mode where more cost was incurred should be evaluated in line with he order priority
