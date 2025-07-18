@@ -7,11 +7,43 @@ This query and analysis project aims to write queries that can support Abuja div
 
 #### Data Source 
 The primary source of this data is unknown but the secondary source of the data is DSA CAPSTONE PROJECT hence it cannot be downloaded online 
+
 #### Tool used
 Microsoft sql server [Download Here]
 * For quering and analysis
 
-#### Analysis
+### Exploratory Data Analysis
+
+* Which product category had the highest sales?
+* What are the Top 3 and Bottom 3 regions in terms of sales?
+* What were the total sales of appliances in Ontario?
+* Advise the management of KMS on what to do to increase the revenue from the bottom 10 customers
+* KMS incurred the most shipping cost using which shipping method?Case Scenario II
+* Who are the most valuable customers, and what products or services do they typicallypurchase?
+* Which small business customer had the highest sales?
+* Which Corporate Customer placed the most number of orders in 2009 – 2012?
+* Which consumer customer was the most profitable one?
+* Which customer returned items, and what segment do they belong to?
+* If the delivery truck is the most economical but the slowest shipping method and
+Express Air is the fastest but the most expensive one, do you think the company
+appropriately spent shipping costs based on the Order Priority? Explain your answer
+
+### Result Findings
+* Technology is the Best Selling Category
+* West, Ontario and prarie are the top regions in sales
+* Nunavut, Northwest, and Yukan are the regions with the least sales respectively
+* Emily Phan is the consumer customer with the most profit
+* Dennis Kane is the higest small business owner
+* Delivery Truck is the shipping mode witrh the most shipping cost
+
+### Recommendation
+* KMS should improve services in the top 3 regions
+* Marketing strategy should be applied more in regions with the least sales
+* The shipping mode where more cost was incurred should be evaluated in line with he order priority
+* More production and sales for the best selling product category
+
+
+#### Query and Analysis
 
   ```
   sql
@@ -109,6 +141,7 @@ select top 10 Customer_Name, Customer_Segment, Product_Category, Product_Sub_Cat
 
 
 -------QUESTION 7: WHICH SMALL BUSINESS CUSTOMER HAD THE HIGHEST SALES
+-------ANS: THE SMALL BUSINESS OWNER WITH HE HIGHEST SALES IS DENNIS KANE
 
 select top 1 Customer_Name, Customer_Segment, sum(sales) as Total_sales 
 from kms_inventory
@@ -137,4 +170,3 @@ select top 1* from (
 
 
 
-    
