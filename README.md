@@ -8,7 +8,7 @@ This query and analysis project aims to write queries that can support Abuja div
 #### Data Source 
 The primary source of this data is unknown but the secondary source of the data is DSA CAPSTONE PROJECT hence it cannot be downloaded online 
 #### Tool used
-Microsoft sql server
+Microsoft sql server [Download Here]
 * For quering and analysis
 
 #### Analysis
@@ -34,7 +34,7 @@ alter column Shipping_cost decimal (10,3)
 
 --------JOIN KMS_INVENTORY TABLE AND ORDER__ID TABLES USING SUBQUERY------
 
-select * from (
+select * from kms_inventory
       select Row_ID, Order_ID, Order_Date, Order_Priority, Order_Quantity, Sales, Discount, Ship_Mode, Profit, Unit_Price, Shipping_Cost, Customer_Name, Province, Region, Customer_Segment
 	                from kms_inventory) As kms
 join (
@@ -46,70 +46,84 @@ on kms.Order_ID = Ord. Order_ID
 -----QUESTION 1: WHICH PRODUCT CATEGORY HAD THE HIGHEST SALES-------
 ---ANS: TECHNOLOGY UNDER PRODUCT CATEGORY HAD THE HIGHEST SALES
 
-select product_category,max(sales) as highest_sales from kms_inventory
-where product_category in('Office Supplies','Technology','Furniture')
-group by product_category;
+select top 1 product_category, sum(sales) as highest_sales 
+from kms_inventory
+where product_category in ('Office Supplies', 'Technology', 'Furniture')
+group by product_category
+order by highest_sales desc
 
 
 -------QUESTION 2: WHAT ARE THE TOP 3 AND BOTTOM 3 REGION IN TERMS OF SALES
- ---ANS: THE TOP 3 REGIONS ARE ATLANTIC, QUEBEC, AND PRARIE
- ---ANS: THE BOTTOM 3 REGIONS ARE WEST, WEST, AND YUKON
+ ---ANS: THE TOP 3 REGIONS ARE WEST, ONTARIO, AND PRARIE
+ ---ANS: THE BOTTOM 3 REGIONS ARE NUNAVUT, NORTHWEST TERRITORIES, AND YUKON
 
-select top 3 Region,
-    sum(Sales) as Sales 
+select top 3 Region, sum(Sales) as total_Sales 
 	from kms_inventory
-	group by Region, Sales
-	order by Sales desc
+	group by Region
+	order by total_Sales desc
+	
 
-select top 3 Region,
-    sum(Sales) as Sales 
+select top 3 Region, sum(Sales) as Sales 
 	from kms_inventory
-	group by Region, Sales
+	group by Region
 	order by Sales asc
 
 
 ---------QUESTION 3:WHAT WERE THE TOTAL SALES OF APPLIANCES IN ONTARIO
 ---ANS: THE TOTAL SALES OF ONTARIO IS 202346.839630127
 
-select Product_Sub_Category,Region,
-    sum(Sales) as Total_Sales
+select Region, Product_Sub_Category, sum(Sales) as Total_Sales
 	from kms_inventory
 	where Product_Sub_Category = 'Appliances' and Region = 'Ontario'
-	group by Product_Sub_Category,Region
+	group by Region, Product_Sub_Category
 
 
 -------QUESTION 4: ADVICE THE MANAGEMENT OF KMS ON WHAT TO DO TO INCREASE REVENUE FROM THE BOTTOM 10 CUSTOMERS
 ---ANS: MANAGEMENT OF KMS SHOULD INVEST MORE IN CUSTOMERS WHOSE REVENUE STILL SUMS UP TO A 100 AND ABOVE 
 
-select top 10 Customer_Name, Customer_Segment,
-    sum(Sales) as Revenue 
+select top 10 Customer_Name, Customer_segment, sum(Sales) as Revenue 
 	from kms_inventory
 	group by Customer_Name, Customer_Segment
-	order by Revenue
+	order by Revenue desc
 
 ------QUESTION 5: KMS INCURRED THE MOST SHIPPING COST USING WHICH SHIPPING METHOD
 ---ANS: KMS INCURRED THE MOST SHIPPING COST USING THE DELIVERY TRUCK SHIPPING METHOD
 
-select top 1 Ship_Mode,
-      sum(Shipping_Cost) as Shipping_Cost
+----This Analysis reveals the need for KMS to detemine whether this shipping mode is being used efficiently
+---If the cost of this shipping mode equals the order priority
+---Check whether there are chances of optimizing logistics and reducing cost
+
+select top 1 Ship_Mode, sum(Shipping_Cost) as Shipping_Cost
 	  from kms_inventory
 	  group by Ship_Mode
 	  order by Shipping_Cost desc
 
--------QUESTION 6:
+-------QUESTION 6:WHO ARE THE MOST VALUABLE CUSTOMERS AND WHAT PRODUCT OR SERVICES DO THEY TYPICALLY PURCHASE
 
+
+select top 10 Customer_Name, Customer_Segment, Product_Category, Product_Sub_Category, Product_Name,
+    sum(Sales) as Total_Spent
+	from kms_inventory
+	group by Customer_Name, Customer_Segment, Product_Category, Product_Sub_Category, Product_Name
+	order by Total_Spent desc
 
 
 -------QUESTION 7: WHICH SMALL BUSINESS CUSTOMER HAD THE HIGHEST SALES
----ANS: THE SMALL BUSINESS CUSTOMER WITH THE HIGHEST SALES IS DENNIS KANE
 
-select top 1* from (
-     select Customer_Name, Customer_Segment, Sales
-	    from kms_inventory) as Sales
-		where Customer_Segment = ('Small Business')
-		order by Sales desc
+select top 1 Customer_Name, Customer_Segment, sum(sales) as Total_sales 
+from kms_inventory
+where Customer_Segment = 'Small Business'
+group by Customer_Segment, Customer_Name
+order by Total_sales desc
 
--------QUESTION 8:
+
+-------QUESTION 8: WHICH CORPORATE CUSTOMER PLACED THE MOST NUMBER OF ORDERS IN 2009-2012
+
+select top 5 Customer_Segment as Customer_Segment, Customer_Name, count(Order_Quantity) as Total_Orders
+from kms_inventory
+where Customer_Segment = 'Corporate' and year(Order_Date), between '2009' and '2012'
+group by Customer_Segment
+order by Total_Orders desc
 
 
 -------QUESTION 9: WHICH CONSUMER CUSTOMER WAS THE MOST PROFITABLE ONE
@@ -121,15 +135,6 @@ select top 1* from (
 		where Customer_Segment = ('Consumer')
 		order by Profit desc
 
------QUESTION 10: WHICH CUSTOMER RETURNED ITEMS AND WHAT SEGMENT DO THEY BELONG TO
----ANS:
 
-select * from (
-     select Customer_Name, Customer_Segment, "Status"
-	    from kms_inventory) as "Status"
-		order by "Status" desc
-
-
------QUESTION 11: 
 
     
