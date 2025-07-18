@@ -35,20 +35,6 @@ This process involves the exploring of data to answer some questions such as:
 Express Air is the fastest but the most expensive one, do you think the company
 appropriately spent shipping costs based on the Order Priority? Explain your answer
 
-#### Result Findings
-* Technology is the Best Selling Category
-* West, Ontario and prarie are the top regions in sales
-* Nunavut, Northwest, and Yukan are the regions with the least sales respectively
-* Emily Phan is the consumer customer with the most profit
-* Dennis Kane is the higest small business owner
-* Delivery Truck is the shipping mode witrh the most shipping cost
-
-#### Recommendation
-* KMS should improve services in the top 3 regions
-* Marketing strategy should be applied more in regions with the least sales
-* The shipping mode where more cost was incurred should be evaluated in line with he order priority
-* More production and sales for the best selling product category
-
 
 #### Query and Analysis
 
