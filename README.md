@@ -10,9 +10,17 @@ The primary source of this data is unknown but the secondary source of the data 
 
 #### Tool used
 Microsoft sql server [Download Here]
-* For quering and analysis
+
+#### Data Cleaning and preparation
+The following action was performed
+* create database
+* import  two data csv files and preparation
+* cleaning and formatting
+* altered the datatype of some columns
+* Joined the the two data csv files
 
 ### Exploratory Data Analysis
+This process involves the exploring of data to answer some questions such as:
 
 * Which product category had the highest sales?
 * What are the Top 3 and Bottom 3 regions in terms of sales?
